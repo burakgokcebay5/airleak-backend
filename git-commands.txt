@@ -1,0 +1,18 @@
+# GitHub repository'ye bağlan ve push et
+cd C:\projects\airleakk\airleak-backend
+
+# Remote origin ekle
+git remote add origin https://github.com/burakgokcebay5/airleak-backend.git
+
+# Branch'i main yap
+git branch -M main
+
+# GitHub'a push et
+git push -u origin main
+
+# Eğer authentication hatası alırsanız, Personal Access Token kullanın:
+# 1. GitHub Settings > Developer settings > Personal access tokens
+# 2. Generate new token (classic)
+# 3. Scopes: repo (tümünü seçin)
+# 4. Generate token
+# 5. Token'ı password yerine kullanın
