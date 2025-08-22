@@ -1,34 +1,23 @@
-"""
-Vercel Serverless Function Handler
-"""
-import sys
-import os
-from pathlib import Path
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-# Add parent directory to path
-sys.path.insert(0, str(Path(__file__).parent.parent))
+app = FastAPI()
 
-# Import FastAPI app from main_perfect
-try:
-    from main_perfect import app
-except ImportError:
-    # If main_perfect fails, create a simple app
-    from fastapi import FastAPI
-    from fastapi.middleware.cors import CORSMiddleware
-    
-    app = FastAPI()
-    
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-    
-    @app.get("/")
-    async def root():
-        return {"message": "Airleak Backend API on Vercel", "status": "operational"}
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-# Export handler for Vercel
+@app.get("/")
+async def root():
+    return {"message": "Airleak Backend API on Vercel", "status": "operational"}
+
+@app.get("/api/test")
+async def test():
+    return {"test": "success", "platform": "vercel"}
+
+# Handler for Vercel
 handler = app
