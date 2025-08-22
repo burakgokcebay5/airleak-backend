@@ -1,19 +1,11 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/index.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "50mb"
-      }
-    }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/main" }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "api/index.py"
+  "functions": {
+    "api/main.py": {
+      "runtime": "python3.9",
+      "maxDuration": 60
     }
-  ],
-  "installCommand": "pip install -r requirements-vercel.txt"
+  }
 }
