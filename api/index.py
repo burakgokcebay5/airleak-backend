@@ -14,7 +14,7 @@ app.add_middleware(
 
 @app.get("/")
 def root():
-    return {"message": "Airleak Backend API", "status": "operational"}
+    return {"message": "Airleak Backend API v2", "status": "operational", "version": "2.0"}
 
 @app.get("/api/health")
 def health_check():
